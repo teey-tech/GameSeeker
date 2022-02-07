@@ -7,7 +7,6 @@
 <p align="left"> <strong>GameSeeker</strong> where you can find every game you desire</strong>.
 <br>
 </p>
-<p align="left"><strong>Descrição do Projeto: </strong> Blog Pessoal onde irei contar um pouco do meu dia a dia.
 <br>
 </p>
 
