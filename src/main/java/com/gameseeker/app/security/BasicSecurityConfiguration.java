@@ -36,18 +36,6 @@ public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter {
   private UserDetailsServiceImplement service;
 
   @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests()
-        .antMatchers(HttpMethod.POST, "user/register").permitAll()
-        .antMatchers(HttpMethod.PUT, "user/auth").permitAll()
-        .anyRequest().authenticated()
-        .and().httpBasic()
-        .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and().cors()
-        .and().csrf().disable();
-  }
-
-  @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(service);
 
@@ -58,5 +46,17 @@ public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
+  }
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests()
+        .antMatchers(HttpMethod.POST, "/user/auth").permitAll()
+        .antMatchers(HttpMethod.POST, "/user/register").permitAll()
+        .anyRequest().authenticated()
+        .and().httpBasic()
+        .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and().cors()
+        .and().csrf().disable();
   }
 }
