@@ -51,6 +51,18 @@ public class UserModel {
   @JsonIgnoreProperties({ "user" })
   private List<PostModel> post = new ArrayList<>();
 
+  public UserModel(Long idUser, Long seekerCoins, String name, String email, String password, String picture) {
+    this.idUser = idUser;
+    this.seekerCoins = seekerCoins;
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.picture = picture;
+  }
+
+  public UserModel() {
+  }
+
   // Getters and Setters
   public Long getIdUser() {
     return this.idUser;

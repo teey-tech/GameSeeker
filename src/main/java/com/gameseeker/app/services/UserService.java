@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.gameseeker.app.dtos.UserCredentialsDTO;
 import com.gameseeker.app.dtos.UserLoginDTO;
 import com.gameseeker.app.models.UserModel;
 import com.gameseeker.app.repositories.UserRepository;
@@ -24,12 +23,10 @@ import org.springframework.web.server.ResponseStatusException;
  * @author Thiago Batista
  * @since 07/02/2022
  * @version 1.0
- * @see UsuarioModel
+ * @see userModel
  */
 @Service
 public class UserService {
-
-  private UserCredentialsDTO credentialsDTO;
 
   @Autowired
   private UserRepository repository;
@@ -71,6 +68,24 @@ public class UserService {
   }
 
   /**
+   * Private boolean method, used to compare the typed password and the password
+   * stored in data base if matches the user can login into the system.
+   * 
+   * @author Thiago Batista
+   * @since 06/02/2022
+   * @version 1.0
+   * @see Base64
+   * @param typedpassword
+   * @param dbpassword
+   * @return boolean
+   * 
+   */
+  private boolean comparePassword(String typedpassword, String dbpassword) {
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    return encoder.matches(typedpassword, dbpassword);
+  }
+
+  /**
    * Public method used to register a user in the system's database. This method
    * returns a BAD_REQUEST if the intention to register already has an email
    * registered in the system, to avoid duplication. If you don't hear an existing
@@ -103,7 +118,7 @@ public class UserService {
    * @since 07/02/2022
    * @version 1.0
    * @param updateUser
-   * @return ResponseEntity<UsuarioModel>
+   * @return ResponseEntity<userModel>
    * 
    */
   public Optional<UserModel> updateUser(UserModel updateUser) {
@@ -130,21 +145,20 @@ public class UserService {
    * @version 1.0
    * 
    */
-  public ResponseEntity<UserCredentialsDTO> credentials(@Valid UserLoginDTO dto) {
-    return repository.findByEmail(dto.getEmail()).map(resp -> {
-      BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-      if (encoder.matches(dto.getPassword(), resp.getPassword())) {
-        credentialsDTO = new UserCredentialsDTO(
-            generatorBasicToken(dto.getEmail(), dto.getPassword()),
-            resp.getIdUser(),
-            resp.getEmail());
-        return ResponseEntity.status(200).body(credentialsDTO);
-      } else {
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email or password is typed wrong");
+  public Optional<UserLoginDTO> logaruser(Optional<UserLoginDTO> dto) {
+    Optional<UserModel> user = repository.findByEmail(dto.get().getEmail());
+    if (user.isPresent()) {
+      if (comparePassword(dto.get().getPassword(), user.get().getPassword())) {
+        dto.get().setIdUser(user.get().getIdUser());
+        dto.get().setName(user.get().getName());
+        dto.get().setPicture(user.get().getPicture());
+        dto.get()
+            .setToken(generatorBasicToken(dto.get().getEmail(), dto.get().getPassword()));
+        dto.get().setPassword(user.get().getPassword());
+        return dto;
       }
-    }).orElseThrow(() -> {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Inform a correct Email or Password");
-    });
+    }
+    throw new ResponseStatusException(
+        HttpStatus.UNAUTHORIZED, "User or password is wrong!", null);
   }
 }

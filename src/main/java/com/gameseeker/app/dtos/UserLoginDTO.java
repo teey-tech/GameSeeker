@@ -1,8 +1,5 @@
 package com.gameseeker.app.dtos;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-
 /**
  * Class responsible for DTO Userlogin.
  * 
@@ -10,19 +7,39 @@ import javax.validation.constraints.NotNull;
  * @since 07/02/2022
  * @version 1.0
  * @see UserModel
- * @see UserCredentialsDTO
  */
 public class UserLoginDTO {
 
   // User generated
-  @NotNull(message = "Attribute Email is Obligatory!")
-  @Email(message = "Inform a valid Email")
+  private Long idUser;
+
+  private String name;
+
   private String email;
 
-  @NotNull(message = "Attribute Password is Obligatory")
   private String password;
 
+  private String picture;
+
+  private String token;
+
   // Getters and Setters
+  public Long getIdUser() {
+    return this.idUser;
+  }
+
+  public void setIdUser(Long idUser) {
+    this.idUser = idUser;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
   public String getEmail() {
     return this.email;
   }
@@ -37,6 +54,22 @@ public class UserLoginDTO {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getPicture() {
+    return this.picture;
+  }
+
+  public void setPicture(String picture) {
+    this.picture = picture;
+  }
+
+  public String getToken() {
+    return this.token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
   }
 
 }
