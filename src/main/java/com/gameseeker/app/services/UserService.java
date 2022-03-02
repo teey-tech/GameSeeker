@@ -3,8 +3,6 @@ package com.gameseeker.app.services;
 import java.nio.charset.Charset;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import com.gameseeker.app.dtos.UserLoginDTO;
 import com.gameseeker.app.models.UserModel;
 import com.gameseeker.app.repositories.UserRepository;
@@ -145,7 +143,7 @@ public class UserService {
    * @version 1.0
    * 
    */
-  public Optional<UserLoginDTO> logaruser(Optional<UserLoginDTO> dto) {
+  public Optional<UserLoginDTO> logIn(Optional<UserLoginDTO> dto) {
     Optional<UserModel> user = repository.findByEmail(dto.get().getEmail());
     if (user.isPresent()) {
       if (comparePassword(dto.get().getPassword(), user.get().getPassword())) {

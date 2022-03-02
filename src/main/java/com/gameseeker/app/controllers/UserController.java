@@ -1,10 +1,10 @@
 package com.gameseeker.app.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.gameseeker.app.dtos.UserCredentialsDTO;
 import com.gameseeker.app.dtos.UserLoginDTO;
 import com.gameseeker.app.models.UserModel;
 import com.gameseeker.app.repositories.UserRepository;
@@ -94,11 +94,13 @@ public class UserController {
    * @version 1.0
    * @see UserService
    * @see UserModel
-   * @param dto
+   * @param auth
    */
-  @PutMapping("/auth")
-  public ResponseEntity<UserCredentialsDTO> getCredentials(@Valid @RequestBody UserLoginDTO dto) {
-    return services.credentials(dto);
+  @PostMapping("/auth")
+  public ResponseEntity<UserLoginDTO> auth(@RequestBody Optional<UserLoginDTO> auth) {
+    return services.logIn(auth)
+        .map(resp -> ResponseEntity.ok(resp))
+        .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
   }
 
   /**
@@ -111,8 +113,8 @@ public class UserController {
    * @see UserService
    * @param updateUser
    */
-  @PutMapping("/atualizar")
-  public ResponseEntity<UserModel> putUsuario(@Valid @RequestBody UserModel updateUser) {
+  @PutMapping("/update")
+  public ResponseEntity<UserModel> update(@Valid @RequestBody UserModel updateUser) {
     return services.updateUser(updateUser)
         .map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
         .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
