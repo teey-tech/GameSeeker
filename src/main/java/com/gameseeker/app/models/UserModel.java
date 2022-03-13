@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -43,8 +42,7 @@ public class UserModel {
   private String email;
 
   @NotNull(message = "Attribute CPF is Obligatory!")
-  @Size(max = 11, message = "Attribute CPF needs to contain max 11 characters")
-  private Integer cpf;
+  private String cpf;
 
   @NotNull(message = "Attribute address is Obligatory!")
   private String address;
@@ -69,7 +67,7 @@ public class UserModel {
   @JsonIgnoreProperties({ "user" })
   private List<PostModel> post = new ArrayList<>();
 
-  public UserModel(Long idUser, Long seekerCoins, String name, String email, Integer cpf, String address, String state,
+  public UserModel(Long idUser, Long seekerCoins, String name, String email, String cpf, String address, String state,
       String country, String password, String favoritTheme, String picture) {
     this.idUser = idUser;
     this.seekerCoins = seekerCoins;
@@ -88,6 +86,7 @@ public class UserModel {
   }
 
   // Getters and Setters
+
   public Long getIdUser() {
     return this.idUser;
   }
@@ -120,11 +119,11 @@ public class UserModel {
     this.email = email;
   }
 
-  public Integer getCpf() {
+  public String getCpf() {
     return this.cpf;
   }
 
-  public void setCpf(Integer cpf) {
+  public void setCpf(String cpf) {
     this.cpf = cpf;
   }
 
