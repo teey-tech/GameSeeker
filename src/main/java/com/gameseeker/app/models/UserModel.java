@@ -44,7 +44,7 @@ public class UserModel {
 
   @NotNull(message = "Attribute CPF is Obligatory!")
   @Size(max = 11, message = "Attribute CPF needs to contain max 11 characters")
-  private String cpf;
+  private Integer cpf;
 
   @NotNull(message = "Attribute address is Obligatory!")
   private String address;
@@ -69,7 +69,7 @@ public class UserModel {
   @JsonIgnoreProperties({ "user" })
   private List<PostModel> post = new ArrayList<>();
 
-  public UserModel(Long idUser, Long seekerCoins, String name, String email, String cpf, String address, String state,
+  public UserModel(Long idUser, Long seekerCoins, String name, String email, Integer cpf, String address, String state,
       String country, String password, String favoritTheme, String picture) {
     this.idUser = idUser;
     this.seekerCoins = seekerCoins;
@@ -120,11 +120,11 @@ public class UserModel {
     this.email = email;
   }
 
-  public String getCpf() {
+  public Integer getCpf() {
     return this.cpf;
   }
 
-  public void setCpf(String cpf) {
+  public void setCpf(Integer cpf) {
     this.cpf = cpf;
   }
 

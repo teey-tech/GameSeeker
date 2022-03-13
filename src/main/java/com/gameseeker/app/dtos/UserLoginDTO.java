@@ -21,7 +21,7 @@ public class UserLoginDTO {
 
   private String picture;
 
-  private String cpf;
+  private Integer cpf;
 
   private String address;
 
@@ -75,11 +75,11 @@ public class UserLoginDTO {
     this.picture = picture;
   }
 
-  public String getCpf() {
+  public Integer getCpf() {
     return this.cpf;
   }
 
-  public void setCpf(String cpf) {
+  public void setCpf(Integer cpf) {
     this.cpf = cpf;
   }
 
