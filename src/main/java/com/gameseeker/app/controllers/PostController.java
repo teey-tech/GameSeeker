@@ -33,7 +33,7 @@ import org.springframework.web.server.ResponseStatusException;
  * @see PostRepository
  */
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/post")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PostController {
 

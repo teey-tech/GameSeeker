@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -34,15 +33,12 @@ public class PostModel {
 
   // User generated
   @NotBlank(message = "Attribute Game Name is Obligatory!")
-  @Size(max = 100, message = "Attribute Game Name needs to contain at least 05 and max 100 characters")
   private String gameName;
 
   @NotBlank(message = "Attribute Description is Obligatory!")
-  @Size(max = 1000, message = "Attribute Description needs to contain at least 10 and max 10000 characters")
   private String description;
 
   @NotBlank(message = "Attribute Theme is Obligatory!")
-  @Size(max = 100, message = "Attribute Theme needs to contain max 100 characters")
   private String theme;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "pt-BR", timezone = "Brazil/East")
