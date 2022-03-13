@@ -31,12 +31,12 @@ public interface UserRepository extends JpaRepository<UserModel, Long> {
   public Optional<UserModel> findByEmail(String email);
 
   /**
-   * Method responsible for find post by title
+   * Method responsible for find post by favoritTheme
    * 
    * @author Thiago Batista
    * @since 07/02/2022
    * @version 1.0
-   * @param title
+   * @param favoritTheme
    * @return Optional<UserModel>
    */
   public List<UserModel> findAllByFavoritThemeContainingIgnoreCase(String favoritTheme);
