@@ -33,13 +33,17 @@ public class PostModel {
   private Long idPost;
 
   // User generated
-  @NotBlank(message = "Attribute Title is Obligatory!")
-  @Size(min = 5, max = 100, message = "Attribute Tittle needs to contain at least 05 and max 100 characters")
-  private String title;
+  @NotBlank(message = "Attribute Game Name is Obligatory!")
+  @Size(max = 100, message = "Attribute Game Name needs to contain at least 05 and max 100 characters")
+  private String gameName;
 
   @NotBlank(message = "Attribute Description is Obligatory!")
-  @Size(min = 10, max = 1000, message = "Attribute Description needs to contain at least 10 and max 10000 characters")
+  @Size(max = 1000, message = "Attribute Description needs to contain at least 10 and max 10000 characters")
   private String description;
+
+  @NotBlank(message = "Attribute Theme is Obligatory!")
+  @Size(max = 100, message = "Attribute Theme needs to contain max 100 characters")
+  private String theme;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "pt-BR", timezone = "Brazil/East")
   private LocalDate releaceDate;
@@ -62,12 +66,8 @@ public class PostModel {
   @JsonIgnoreProperties({ "post" })
   private UserModel user;
 
-  @ManyToOne
-  @JoinColumn(name = "fk_theme")
-  @JsonIgnoreProperties({ "theme" })
-  private ThemeModel theme;
-
   // Getters and Setters
+
   public Long getIdPost() {
     return this.idPost;
   }
@@ -76,12 +76,12 @@ public class PostModel {
     this.idPost = idPost;
   }
 
-  public String getTitle() {
-    return this.title;
+  public String getGameName() {
+    return this.gameName;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public void setGameName(String gameName) {
+    this.gameName = gameName;
   }
 
   public String getDescription() {
@@ -90,6 +90,14 @@ public class PostModel {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public String getTheme() {
+    return this.theme;
+  }
+
+  public void setTheme(String theme) {
+    this.theme = theme;
   }
 
   public LocalDate getReleaceDate() {
@@ -138,14 +146,6 @@ public class PostModel {
 
   public void setUser(UserModel user) {
     this.user = user;
-  }
-
-  public ThemeModel getTheme() {
-    return this.theme;
-  }
-
-  public void setTheme(ThemeModel theme) {
-    this.theme = theme;
   }
 
 }

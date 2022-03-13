@@ -75,7 +75,7 @@ public class PostController {
    * @version 1.0
    * @param title
    */
-  @GetMapping("/title/{title}")
+  @GetMapping("/{title}")
   public ResponseEntity<List<PostModel>> getByTitle(@PathVariable String title) {
     return ResponseEntity.ok(repository.findAllByTitleContainingIgnoreCase(title));
   }
@@ -88,7 +88,7 @@ public class PostController {
    * @version 1.0
    * @param newPost
    */
-  @PostMapping("/register")
+  @PostMapping
   public ResponseEntity<PostModel> savePost(@Valid @RequestBody PostModel newPost) {
     return ResponseEntity.status(HttpStatus.CREATED)
         .body(repository.save(newPost));
@@ -102,7 +102,7 @@ public class PostController {
    * @version 1.0
    * @param updatePost
    */
-  @PutMapping("/update")
+  @PutMapping
   public ResponseEntity<PostModel> updatePost(@Valid @RequestBody PostModel updatePost) {
     return repository.findById(updatePost.getIdPost())
         .map(response -> ResponseEntity.status(HttpStatus.OK).body(repository.save(updatePost)))
@@ -118,7 +118,7 @@ public class PostController {
    * @param idPost
    */
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  @DeleteMapping("/delete/{idPost}")
+  @DeleteMapping("/{idPost}")
   public void deletePost(@PathVariable long idPost) {
     Optional<PostModel> post = repository.findById(idPost);
 

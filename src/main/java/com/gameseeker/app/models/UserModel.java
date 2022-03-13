@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -41,9 +42,26 @@ public class UserModel {
   @Email(message = "Inform a valid Email")
   private String email;
 
+  @NotNull(message = "Attribute CPF is Obligatory!")
+  @Size(max = 11, message = "Attribute CPF needs to contain max 11 characters")
+  private String cpf;
+
+  @NotNull(message = "Attribute address is Obligatory!")
+  private String address;
+
+  @NotNull(message = "Attribute state is Obligatory!")
+  private String state;
+
+  @NotNull(message = "Attribute country is Obligatory!")
+  private String country;
+
   @NotNull(message = "Attribute Password is Obligatory")
   private String password;
 
+  @NotNull(message = "Attribute favoritTheme is Obligatory")
+  private String favoritTheme;
+
+  @NotNull(message = "Attribute picture is Obligatory!")
   private String picture;
 
   // System relations
@@ -51,12 +69,18 @@ public class UserModel {
   @JsonIgnoreProperties({ "user" })
   private List<PostModel> post = new ArrayList<>();
 
-  public UserModel(Long idUser, Long seekerCoins, String name, String email, String password, String picture) {
+  public UserModel(Long idUser, Long seekerCoins, String name, String email, String cpf, String address, String state,
+      String country, String password, String favoritTheme, String picture) {
     this.idUser = idUser;
     this.seekerCoins = seekerCoins;
     this.name = name;
     this.email = email;
+    this.cpf = cpf;
+    this.address = address;
+    this.state = state;
+    this.country = country;
     this.password = password;
+    this.favoritTheme = favoritTheme;
     this.picture = picture;
   }
 
@@ -96,12 +120,52 @@ public class UserModel {
     this.email = email;
   }
 
+  public String getCpf() {
+    return this.cpf;
+  }
+
+  public void setCpf(String cpf) {
+    this.cpf = cpf;
+  }
+
+  public String getAddress() {
+    return this.address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public String getState() {
+    return this.state;
+  }
+
+  public void setState(String state) {
+    this.state = state;
+  }
+
+  public String getCountry() {
+    return this.country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
   public String getPassword() {
     return this.password;
   }
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getFavoritTheme() {
+    return this.favoritTheme;
+  }
+
+  public void setFavoritTheme(String favoritTheme) {
+    this.favoritTheme = favoritTheme;
   }
 
   public String getPicture() {

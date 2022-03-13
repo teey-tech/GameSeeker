@@ -119,4 +119,17 @@ public class UserController {
         .map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
         .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
   }
+
+  /**
+   * Get all information based on the name of the favoritTheme.
+   * 
+   * @author Thiago Batista
+   * @since 07/02/2022
+   * @version 1.0
+   * @param favoritTheme
+   */
+  @GetMapping("/{favoritTheme}")
+  public ResponseEntity<List<UserModel>> getByTitle(@PathVariable String favoritTheme) {
+    return ResponseEntity.ok(repository.findAllByFavoritThemeContainingIgnoreCase(favoritTheme));
+  }
 }

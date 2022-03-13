@@ -150,6 +150,11 @@ public class UserService {
         dto.get().setIdUser(user.get().getIdUser());
         dto.get().setName(user.get().getName());
         dto.get().setPicture(user.get().getPicture());
+        dto.get().setCpf(user.get().getCpf());
+        dto.get().setCountry(user.get().getCountry());
+        dto.get().setAddress(user.get().getAddress());
+        dto.get().setState(user.get().getState());
+        dto.get().setFavoritTheme(user.get().getFavoritTheme());
         dto.get()
             .setToken(generatorBasicToken(dto.get().getEmail(), dto.get().getPassword()));
         dto.get().setPassword(user.get().getPassword());

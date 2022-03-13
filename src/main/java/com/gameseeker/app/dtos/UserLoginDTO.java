@@ -21,9 +21,20 @@ public class UserLoginDTO {
 
   private String picture;
 
+  private String cpf;
+
+  private String address;
+
+  private String state;
+
+  private String country;
+
+  private String favoritTheme;
+
   private String token;
 
   // Getters and Setters
+
   public Long getIdUser() {
     return this.idUser;
   }
@@ -62,6 +73,46 @@ public class UserLoginDTO {
 
   public void setPicture(String picture) {
     this.picture = picture;
+  }
+
+  public String getCpf() {
+    return this.cpf;
+  }
+
+  public void setCpf(String cpf) {
+    this.cpf = cpf;
+  }
+
+  public String getAddress() {
+    return this.address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public String getState() {
+    return this.state;
+  }
+
+  public void setState(String state) {
+    this.state = state;
+  }
+
+  public String getCountry() {
+    return this.country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+  public String getFavoritTheme() {
+    return this.favoritTheme;
+  }
+
+  public void setFavoritTheme(String favoritTheme) {
+    this.favoritTheme = favoritTheme;
   }
 
   public String getToken() {

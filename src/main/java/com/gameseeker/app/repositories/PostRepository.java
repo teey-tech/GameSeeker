@@ -28,4 +28,5 @@ public interface PostRepository extends JpaRepository<PostModel, Long> {
    * @return Optional<UserModel>
    */
   public List<PostModel> findAllByTitleContainingIgnoreCase(String title);
+
 }

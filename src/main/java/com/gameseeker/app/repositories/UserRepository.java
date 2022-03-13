@@ -1,5 +1,6 @@
 package com.gameseeker.app.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.gameseeker.app.models.UserModel;
@@ -28,4 +29,16 @@ public interface UserRepository extends JpaRepository<UserModel, Long> {
    * @return Optional<UserModel>
    */
   public Optional<UserModel> findByEmail(String email);
+
+  /**
+   * Method responsible for find post by title
+   * 
+   * @author Thiago Batista
+   * @since 07/02/2022
+   * @version 1.0
+   * @param title
+   * @return Optional<UserModel>
+   */
+  public List<UserModel> findAllByFavoritThemeContainingIgnoreCase(String favoritTheme);
+
 }
