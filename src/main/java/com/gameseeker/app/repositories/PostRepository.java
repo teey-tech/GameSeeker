@@ -24,9 +24,9 @@ public interface PostRepository extends JpaRepository<PostModel, Long> {
    * @author Thiago Batista
    * @since 07/02/2022
    * @version 1.0
-   * @param title
+   * @param gameName
    * @return Optional<UserModel>
    */
-  public List<PostModel> findAllByTitleContainingIgnoreCase(String title);
+  public List<PostModel> findAllByGameNameContainingIgnoreCase(String gameName);
 
 }

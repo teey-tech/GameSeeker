@@ -73,11 +73,11 @@ public class PostController {
    * @author Thiago Batista
    * @since 07/02/2022
    * @version 1.0
-   * @param title
+   * @param gameName
    */
-  @GetMapping("/{title}")
-  public ResponseEntity<List<PostModel>> getByTitle(@PathVariable String title) {
-    return ResponseEntity.ok(repository.findAllByTitleContainingIgnoreCase(title));
+  @GetMapping("/{gameName}")
+  public ResponseEntity<List<PostModel>> getByTitle(@PathVariable String gameName) {
+    return ResponseEntity.ok(repository.findAllByGameNameContainingIgnoreCase(gameName));
   }
 
   /**
