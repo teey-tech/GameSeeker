@@ -13,6 +13,8 @@ public class UserLoginDTO {
   // User generated
   private Long idUser;
 
+  private Long seekerCoins;
+
   private String name;
 
   private String email;
@@ -41,6 +43,14 @@ public class UserLoginDTO {
 
   public void setIdUser(Long idUser) {
     this.idUser = idUser;
+  }
+
+  public Long getSeekerCoins() {
+    return this.seekerCoins;
+  }
+
+  public void setSeekerCoins(Long seekerCoins) {
+    this.seekerCoins = seekerCoins;
   }
 
   public String getName() {

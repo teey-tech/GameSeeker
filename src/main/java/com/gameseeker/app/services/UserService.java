@@ -148,6 +148,7 @@ public class UserService {
     if (user.isPresent()) {
       if (comparePassword(dto.get().getPassword(), user.get().getPassword())) {
         dto.get().setIdUser(user.get().getIdUser());
+        dto.get().setSeekerCoins(user.get().getSeekerCoins());
         dto.get().setName(user.get().getName());
         dto.get().setPicture(user.get().getPicture());
         dto.get().setCpf(user.get().getCpf());
